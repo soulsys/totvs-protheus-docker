@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server
+    container_name: ${MSSQL_CONTAINER_NAME}
+    env_file:
+      - .env
+    ports: 
+      - ${MSSQL_PORT}:${MSSQL_PORT}
+    volumes:
+      - ${MSSQL_VOLUME}:/var/opt/mssql:delegated
+    networks:
+      - sample-docker-network
+
+  license:
+    image: soulsys/totvs_license_12127
+    container_name: ${LICENSE_CONTAINER_NAME}    
+    env_file:
+      - .env
+    networks:
+      - sample-docker-network
+
+  dbaccess:
+    image: soulsys/totvs_dbaccess_12127
+    container_name: ${DBACCESS_CONTAINER_NAME}    
+    env_file:
+      - .env
+    depends_on: 
+      - mssql
+      - license
+    networks:
+      - sample-docker-network
+      
+  protheus:
+    image: soulsys/totvs_protheus_12127
+    container_name: ${PROTHEUS_CONTAINER_NAME}    
+    env_file:
+      - .env
+    depends_on: 
+      - license
+      - dbaccess
+    ports: 
+      - ${PROTHEUS_TCP_PORT}:${PROTHEUS_TCP_PORT}
+      - ${PROTHEUS_REST_PORT}:${PROTHEUS_REST_PORT}
+      - ${PROTHEUS_HTTP_PORT}:${PROTHEUS_HTTP_PORT}
+    volumes:
+      - ${PROTHEUS_VOLUME}:/totvs/volume:delegated
+    networks:
+      - sample-docker-network
+  
+networks:
+  sample-docker-network:
+    external: true
