@@ -16,7 +16,7 @@ services:
       - sample-docker-network
 
   license:
-    image: soulsys/totvs_license_12127
+    image: soulsys/totvs_license_12133
     container_name: ${LICENSE_CONTAINER_NAME}    
     env_file:
       - .env
@@ -24,7 +24,7 @@ services:
       - sample-docker-network
 
   dbaccess:
-    image: soulsys/totvs_dbaccess_12127
+    image: soulsys/totvs_dbaccess_12133
     container_name: ${DBACCESS_CONTAINER_NAME}    
     env_file:
       - .env
@@ -35,7 +35,7 @@ services:
       - sample-docker-network
       
   protheus:
-    image: soulsys/totvs_protheus_12127
+    image: soulsys/totvs_protheus_12133
     container_name: ${PROTHEUS_CONTAINER_NAME}    
     env_file:
       - .env
