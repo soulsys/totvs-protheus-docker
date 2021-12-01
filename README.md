@@ -22,9 +22,9 @@ docker-compose up
 
 3. Acesse a instância do SQL Server. Recomendamos utilizar o [Azure Data Studio](https://docs.microsoft.com/pt-br/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15).
 - Servidor: localhost
-- Porta: conforme definida na variável ***MSSQL_PORT***
+- Porta: conforme a variável ***MSSQL_PORT***
 - Usuário: sa
-- Senha: conforme definida na variável ***SA_PASSWORD***
+- Senha: conforme a variável ***SA_PASSWORD***
 
 4. Crie o banco de dados do Protheus com o mesmo nome definido na variável ***DBACCESS_DB_ALIAS***
 
