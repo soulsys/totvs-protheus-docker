@@ -1,7 +1,7 @@
-# TOTVS Advpl Docker
+# TOTVS Protheus Docker
 
-O objetivo desse repositório é ser um ponto de partida para desenvolvimento Advpl 
-utilizando nossas [imagens docker](https://hub.docker.com/u/soulsys) das soluções TOTVS.
+O objetivo desse repositório é ser um ponto de partida para criação de ambientes de 
+desenvolvimento Protheus utilizando nossas [imagens docker](https://hub.docker.com/u/soulsys) das soluções TOTVS.
 
 ## Importante
 
