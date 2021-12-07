@@ -23,7 +23,11 @@ desenvolvimento Protheus utilizando nossas [imagens docker](https://hub.docker.c
 ### Mac
 
 - Instalar o [Docker Desktop](https://docs.docker.com/desktop/mac/install/)
-- Habilitar pelo ao menos 6 GB de RAM para o Docker Desktop
+
+## Mémoria
+
+- Os containers precisam de pelo ao menos 4 GB de RAM para execução sem erros
+- Se estiver usando o Docker Desktop, habilite a memória na área de recursos
 
 ## Softwares recomendados
 
