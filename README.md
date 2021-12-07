@@ -70,7 +70,15 @@ CREATE DATABASE [protheus_db] COLLATE Latin1_General_BIN;
 6. Acesse o Protheus através do smartclient, considerando *localhost* como servidor e a porta definida 
 na variável ***PROTHEUS_TCP_PORT***
 
-## Configurações
+## Dicas 💡
 
-Acesse a página das [imagens no Docker Hub](https://hub.docker.com/u/soulsys) para conhecer todas 
+- Após o primeiro uso, sempre utilize o comando ***docker-compose up --no-recreate*** para não recriar o container 
+do Protheus e perder o estado do seu *apo*, *appserver* e *protheus_data*
+
+- Utilize periodicamente o script ***sh backup.sh*** no container do Protheus para salvar seus dados na pasta de volume
+
+- Instale o [Node.js](https://nodejs.org/en/download/) e utilize os scripts NPM para subir e parar os containers 
+de forma visual através do VS Code
+
+- Acesse a página das [imagens no Docker Hub](https://hub.docker.com/u/soulsys) para conhecer todas 
 as variáveis de ambiente e scripts disponíveis.
