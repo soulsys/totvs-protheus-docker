@@ -72,6 +72,8 @@ na variável ***PROTHEUS_TCP_PORT***
 
 ## Dicas 💡
 
+- Optamos por não compartilhar as pastas *apo*, *appserver* e *protheus_data* com o host por questões de performance
+
 - Após o primeiro uso, sempre utilize o comando ***docker-compose up --no-recreate*** para não recriar o container 
 do Protheus e perder o estado do seu *apo*, *appserver* e *protheus_data*
 
