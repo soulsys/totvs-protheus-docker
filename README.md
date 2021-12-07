@@ -8,6 +8,7 @@ desenvolvimento Protheus utilizando nossas [imagens docker](https://hub.docker.c
 - Esse repositório não possui qualquer relação com a TOTVS S/A
 - As imagens **NÃO** devem ser usadas em ambientes de produção
 - Utilize apenas como ambiente de desenvolvimento
+- Ao utilizar você concorda com os termos da licença MIT
 
 ## Pré-requisitos
 
