@@ -52,7 +52,6 @@ services:
       - ${PROTHEUS_TCP_PORT}:${PROTHEUS_TCP_PORT}
       - ${PROTHEUS_WEBAPP_PORT}:${PROTHEUS_WEBAPP_PORT}
       - ${PROTHEUS_REST_PORT}:${PROTHEUS_REST_PORT}
-      - ${PROTHEUS_HTTP_PORT}:${PROTHEUS_HTTP_PORT}
     volumes:
       - ${PROTHEUS_VOLUME}:/totvs/volume:delegated
     networks:
