@@ -1,6 +1,6 @@
 # TOTVS Protheus Docker
 
-O objetivo desse repositório é ser um ponto de partida para criação de ambientes de 
+O objetivo desse repositório é ser um ponto de partida para criação de ambientes de
 desenvolvimento Protheus utilizando nossas [imagens docker](https://hub.docker.com/u/soulsys) das soluções TOTVS.
 
 ## Importante
@@ -23,7 +23,7 @@ desenvolvimento Protheus utilizando nossas [imagens docker](https://hub.docker.c
 
 ### Mac
 
-- Instalar o [Docker Desktop](https://docs.docker.com/desktop/mac/install/)
+- Instalar o [OrbStack](https://orbstack.dev/)
 
 ## Mémoria
 
@@ -33,17 +33,17 @@ desenvolvimento Protheus utilizando nossas [imagens docker](https://hub.docker.c
 ## Softwares recomendados
 
 - [VS Code](https://code.visualstudio.com/download)
-(instalar plugins [TOTVS Developer Studio](https://marketplace.visualstudio.com/items?itemName=totvs.tds-vscode) e 
-[Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker))
+  (instalar plugins [TOTVS Developer Studio](https://marketplace.visualstudio.com/items?itemName=totvs.tds-vscode) e
+  [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker))
 - [Node.js](https://nodejs.org/en/download/)
 - [Azure Data Studio](https://docs.microsoft.com/pt-br/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15)
 
 ## Usando pela primeira vez
 
-1. Defina as variáveis de ambiente no arquivo ***.env***. 
-Todas as variáveis disponíveis estão documentadas no [docker hub](https://hub.docker.com/u/soulsys).
+1. Defina as variáveis de ambiente no arquivo **_.env_**.
+   Todas as variáveis disponíveis estão documentadas no [docker hub](https://hub.docker.com/u/soulsys).
 
-3. Criação de uma rede para os containers
+2. Criação de uma rede para os containers
 
 ```bash
 docker network create sample-docker-network
@@ -56,34 +56,49 @@ docker-compose up --no-recreate
 ```
 
 4. Acesse a instância do SQL Server. Recomendamos utilizar o [Azure Data Studio](https://docs.microsoft.com/pt-br/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15).
-- Servidor: localhost
-- Porta: conforme a variável ***MSSQL_PORT***
-- Usuário: sa
-- Senha: conforme a variável ***SA_PASSWORD***
 
-5. Crie o banco de dados do Protheus com o mesmo nome definido na variável ***DBACCESS_DB_ALIAS***
+- Servidor: localhost
+- Porta: conforme a variável **_MSSQL_PORT_**
+- Usuário: sa
+- Senha: conforme a variável **_SA_PASSWORD_**
+
+5. Crie o banco de dados do Protheus com o mesmo nome definido na variável **_DBACCESS_DB_ALIAS_**
 
 ```sql
 CREATE DATABASE [protheus_db] COLLATE Latin1_General_BIN;
 ```
 
-6. Acesse o Protheus através do smartclient, considerando *localhost* como servidor e a porta definida 
-na variável ***PROTHEUS_TCP_PORT***
+6. Reinicie os containers
+
+```bash
+docker-compose stop && docker-compose up --no-recreate
+```
+
+7. Acesse o Protheus através do smartclient ou webapp, considerando _localhost_ como servidor e a porta definida
+   na variável **_PROTHEUS_TCP_PORT_** ou **_PROTHEUS_WEBAPP_PORT_**
+
+## 12.1.2410 - Apple Silicon 💻
+
+- Se estiver utilizando um Mac com chip Apple Silicon, utilize a tag [12.1.2410-aarch64](https://hub.docker.com/r/soulsys/totvs_protheus/tags) para o release 12.1.2410 do Protheus
+
+- As demais imagens não precisam de tratamentos específicos e funcionam normalmente com a emulação padrão do Rosetta
+
+- Os testes foram feitos utilizando o [OrbStack](https://orbstack.dev/) em um Macbook Pro M4
 
 ## Dicas 💡
 
-- Optamos por não compartilhar as pastas *apo*, *appserver* e *protheus_data* com o host por questões de performance
+- Optamos por não compartilhar as pastas _apo_, _appserver_ e _protheus_data_ com o host por questões de performance
 
-- Após o primeiro uso, sempre utilize o comando ***docker-compose up --no-recreate*** para não recriar o container 
-do Protheus e perder o estado do seu *apo*, *appserver* e *protheus_data*
+- Após o primeiro uso, sempre utilize o comando **_docker-compose up --no-recreate_** para não recriar o container
+  do Protheus e perder o estado do seu _apo_, _appserver_ e _protheus_data_
 
-- Utilize periodicamente o script ***sh backup.sh*** no container do Protheus para salvar seus dados na pasta de volume
+- Utilize periodicamente o script **_sh backup.sh_** no container do Protheus para salvar seus dados na pasta de volume
 
-- Instale o [Node.js](https://nodejs.org/en/download/) e utilize os scripts NPM para subir e parar os containers 
-de forma visual através do VS Code
+- Instale o [Node.js](https://nodejs.org/en/download/) e utilize os scripts NPM para subir e parar os containers
+  de forma visual através do VS Code
 
-- Acesse a página das [imagens no Docker Hub](https://hub.docker.com/u/soulsys) para conhecer todas 
-as variáveis de ambiente e scripts disponíveis.
+- Acesse a página das [imagens no Docker Hub](https://hub.docker.com/u/soulsys) para conhecer todas
+  as variáveis de ambiente e scripts disponíveis.
 
 ## Dúvidas e sugestões ❓
 
