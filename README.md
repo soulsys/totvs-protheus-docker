@@ -81,6 +81,8 @@ docker-compose stop && docker-compose up --no-recreate
 
 - Se estiver utilizando um Mac com chip Apple Silicon, utilize a tag [12.1.2410-aarch64](https://hub.docker.com/r/soulsys/totvs_protheus/tags) para o release 12.1.2410 do Protheus
 
+- A técnica consiste em executar o appserver em um ambiente x86_64 através do comando [chroot](<https://wiki.archlinux.org/title/Chroot*(Portugu%C3%AAs)>). Para tal, o diretório **_/totvs_** é copiado para **_/rootfs_** durante a inicialização. Portanto, sempre reinicie o container do protheus após alterar alguma em **_/totvs_**.
+
 - As demais imagens não precisam de tratamentos específicos e funcionam normalmente com a emulação padrão do Rosetta
 
 - Os testes foram feitos utilizando o [OrbStack](https://orbstack.dev/) em um Macbook Pro M4
