@@ -4,7 +4,6 @@
   "scripts": {
     "create-network": "docker network create sample-docker-network",
     "up": "docker-compose up --no-recreate",
-    "stop": "docker-compose stop",
-    "prune": "docker system prune"
+    "stop": "docker-compose stop"
   }
 }

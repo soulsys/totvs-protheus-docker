@@ -14,7 +14,7 @@ services:
       - sample-docker-network
 
   license:
-    image: soulsys/totvs_license:12.1.2410
+    image: soulsys/totvs_license:3.7.0
     container_name: ${LICENSE_CONTAINER_NAME}
     user: root
     privileged: true
@@ -26,7 +26,7 @@ services:
       - sample-docker-network
 
   dbaccess:
-    image: soulsys/totvs_dbaccess:12.1.2410
+    image: soulsys/totvs_dbaccess:24.1.1.0
     container_name: ${DBACCESS_CONTAINER_NAME}
     user: root
     privileged: true
@@ -39,7 +39,7 @@ services:
       - sample-docker-network
 
   protheus:
-    image: soulsys/totvs_protheus:12.1.2410
+    image: soulsys/totvs_protheus:12.1.2510-aarch64
     container_name: ${PROTHEUS_CONTAINER_NAME}
     user: root
     privileged: true
