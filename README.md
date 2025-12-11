@@ -40,8 +40,33 @@ desenvolvimento Protheus utilizando nossas [imagens docker](https://hub.docker.c
 
 ## Usando pela primeira vez
 
-1. Defina as variáveis de ambiente no arquivo **_.env_**.
-   Todas as variáveis disponíveis estão documentadas no [docker hub](https://hub.docker.com/u/soulsys).
+1. Crie um arquivo `.env` na raiz do repositório e defina as [variáveis de ambiente](https://hub.docker.com/u/soulsys) conforme abaixo:
+
+````bash
+# SQL Server
+SA_PASSWORD=Root@mssqlpsw
+ACCEPT_EULA=Y
+MSSQL_CONTAINER_NAME=mssql
+MSSQL_VOLUME=./docker/mssql
+MSSQL_PORT=1433
+
+# License Server
+LICENSE_CONTAINER_NAME=license
+LICENSE_=license
+LICENSE_WEBAPP_PORT=8020
+
+# DBAccess
+DBACCESS_CONTAINER_NAME=dbaccess
+DBACCESS_DB_ALIAS=protheus_db
+
+# Protheus
+PROTHEUS_ENVIRONMENT=environment
+PROTHEUS_CONTAINER_NAME=protheus
+PROTHEUS_VOLUME=./docker/protheus
+PROTHEUS_TCP_PORT=2034
+PROTHEUS_WEBAPP_PORT=8097
+PROTHEUS_REST_PORT=8098
+````
 
 2. Criação de uma rede para os containers
 
@@ -58,11 +83,11 @@ docker-compose up --no-recreate
 4. Acesse a instância do SQL Server. Recomendamos utilizar o [Azure Data Studio](https://docs.microsoft.com/pt-br/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15).
 
 - Servidor: localhost
-- Porta: conforme a variável **_MSSQL_PORT_**
+- Porta: conforme a variável `MSSQL_PORT`
 - Usuário: sa
-- Senha: conforme a variável **_SA_PASSWORD_**
+- Senha: conforme a variável `SA_PASSWORD`
 
-5. Crie o banco de dados do Protheus com o mesmo nome definido na variável **_DBACCESS_DB_ALIAS_**
+5. Crie o banco de dados do Protheus com o mesmo nome definido na variável `DBACCESS_DB_ALIAS`
 
 ```sql
 CREATE DATABASE [protheus_db] COLLATE Latin1_General_BIN;
@@ -74,33 +99,29 @@ CREATE DATABASE [protheus_db] COLLATE Latin1_General_BIN;
 docker-compose stop && docker-compose up --no-recreate
 ```
 
-7. Acesse o Protheus através do smartclient ou webapp, considerando _localhost_ como servidor e a porta definida
-   na variável **_PROTHEUS_TCP_PORT_** ou **_PROTHEUS_WEBAPP_PORT_**
+7. Acesse o Protheus através do endereço `http://localhost:8097` (considere a porta definida na variável `PROTHEUS_WEBAPP_PORT`)
 
-## 12.1.2410 - Apple Silicon 💻
+## Apple Silicon 💻
 
-- Se estiver utilizando um Mac com chip Apple Silicon, utilize a tag [12.1.2410-aarch64](https://hub.docker.com/r/soulsys/totvs_protheus/tags) para o release 12.1.2410 do Protheus
+- Se estiver utilizando um Mac com chip Apple Silicon, utilize as [tags com sufixo `-aarch64`](https://hub.docker.com/r/soulsys/totvs_protheus/tags) para os releases do Protheus a partir de **12.1.2410**.
 
 - A técnica consiste em executar o appserver em um ambiente x86_64 através do comando [chroot](<https://wiki.archlinux.org/title/Chroot*(Portugu%C3%AAs)>). Para tal, o diretório **_/totvs_** é copiado para **_/rootfs_** durante a inicialização. Criamos links simbólicos para facilitar o gerenciamento do container.
 
-- As demais imagens não precisam de tratamentos específicos e funcionam normalmente com a emulação padrão do Rosetta
+- As demais imagens não precisam de tratamentos específicos pois funcionam normalmente com a emulação padrão do Rosetta
 
 - Os testes foram feitos utilizando o [OrbStack](https://orbstack.dev/) em um Macbook Pro M4
 
 ## Dicas 💡
 
-- Optamos por não compartilhar as pastas _apo_, _appserver_ e _protheus_data_ com o host por questões de performance
+- Optamos por não compartilhar as pastas `apo`, `appserver` e `protheus_data` com o host por questões de performance
 
-- Após o primeiro uso, sempre utilize o comando **_docker-compose up --no-recreate_** para não recriar o container
-  do Protheus e perder o estado do seu _apo_, _appserver_ e _protheus_data_
+- Após o primeiro uso, sempre utilize o comando `docker-compose up --no-recreate` para não recriar o container do Protheus e perder o estado do seu `apo`, `appserver` e `protheus_data`
 
-- Utilize periodicamente o script **_sh backup.sh_** no container do Protheus para salvar seus dados na pasta de volume
+- Utilize periodicamente o script `sh backup.sh` no container do Protheus para salvar seus dados na pasta de volume
 
-- Instale o [Node.js](https://nodejs.org/en/download/) e utilize os scripts NPM para subir e parar os containers
-  de forma visual através do VS Code
+- Instale o [Node.js](https://nodejs.org/en/download/) e utilize os scripts NPM para subir e parar os containers de forma visual através do VS Code
 
-- Acesse a página das [imagens no Docker Hub](https://hub.docker.com/u/soulsys) para conhecer todas
-  as variáveis de ambiente e scripts disponíveis.
+- Acesse a página das [imagens no Docker Hub](https://hub.docker.com/u/soulsys) para conhecer todas as variáveis de ambiente e scripts disponíveis.
 
 ## Dúvidas e sugestões ❓
 

@@ -1,6 +1,6 @@
 services:
   mssql:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: ${MSSQL_CONTAINER_NAME}
     user: root
     privileged: true
@@ -39,7 +39,7 @@ services:
       - sample-docker-network
 
   protheus:
-    image: soulsys/totvs_protheus:12.1.2510-aarch64
+    image: soulsys/totvs_protheus:12.1.2510
     container_name: ${PROTHEUS_CONTAINER_NAME}
     user: root
     privileged: true

@@ -1,0 +1,7 @@
+#include "totvs.ch"
+
+user function HelloWorld()
+	
+	MsgInfo("Olá, Mundo!")
+
+return
